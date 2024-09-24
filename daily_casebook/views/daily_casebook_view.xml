@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="daily_cash_book_tree_view" model="ir.ui.view">
+        <field name="name">daily.cash.book.tree</field>
+        <field name="model">daily.cash.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_type"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="total_rev"/>
+                <field name="total_paid"/>
+                <field name="final_total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="daily_cash_book_form_view" model="ir.ui.view">
+        <field name="name">daily.cash.book.form</field>
+        <field name="model">daily.cash.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="compute_all" string="Compute All" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_type"/>
+                            <field name="start_date" attrs="{'invisible': [('date_type', '=', 'today')], 'required' :[(('date_type','=','custom'))] }"/>
+                            <field name="end_date" attrs="{'invisible': [('date_type', '=', 'today')], 'required' :[(('date_type','=','custom'))] }"/>
+                        </group>
+                        <group>
+                            <field name="total_rev"/>
+                            <field name="total_paid"/>
+                            <field name="final_total"/>
+                        </group>
+                    </group>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Income</th>
+                                    <th>Expenses</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr style="line-height:10px; border-top:1px solid black;">
+                                    <td colspan="4" style="text-align:center;background:#E5E7E6;font-size:15px;">
+                                        <b>Vendor Bill</b>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:2px;vertical-align:bottom;">
+                                    <td style="text-align:right;">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="text-align:center;">-</td>
+                                    <td style="text-align:right;color:red;">
+                                        <field name="vendor_bill"/>
+                                        <button class="oe_link" style="margin: -12px 0px;" name="action_vbill_total" string="View" type="object"/>
+                                    </td>
+                                    <td style="text-align:right;font-weight:bold">
+                                        <field name="vendor_bill"/>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:10px; border-top:1px solid black;">
+                                    <td colspan="4" style="text-align:center;background:#E5E7E6;font-size:15px;">
+                                        <b>Customer Invoice</b>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:2px;vertical-align:bottom;">
+                                    <td style="text-align:right;">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="text-align:right;color:green;">
+                                        <field name="customer_invoice"/>
+                                        <button class="oe_link" style="margin: -12px 0px;" name="action_cinvoice_total" string="View" type="object"/>
+                                    </td>
+                                    <td style="text-align:center;">-</td>
+                                    <td style="text-align:right;font-weight:bold;">
+                                        <field name="customer_invoice"/>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:10px; border-top:1px solid black;">
+                                    <td colspan="4" style="text-align:center;background:#E5E7E6;font-size:15px;">
+                                        <b>Expenses</b>
+                                    </td>
+                                </tr>
+                                <tr style="line-height:2px;vertical-align:bottom;">
+                                    <td style="text-align:right;">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="text-align:center;">-</td>
+                                    <td style="text-align:right;color:red;">
+                                        <field name="expense"/>
+                                        <button class="oe_link" style="margin: -12px 0px;" name="action_expense_total" string="View" type="object"/>
+                                    </td>
+                                    <td style="text-align:right;font-weight:bold">
+                                        <field name="expense"/>
+                                    </td>
+                                </tr> -->
+                                <tr style="line-height:2px;vertical-align:bottom;border:2px solid black;font-size:15px;background:#E5E7E8">
+                                    <td>
+                                        <b>Final Total</b>
+                                    </td>
+                                    <td style="text-align:right;color:green;">
+                                        <field name="total_rev"/>
+                                    </td>
+                                    <td style="text-align:right;color:red;">
+                                        <field name="total_paid"/>
+                                    </td>
+                                    <td style="text-align:right;font-weight:bold;">
+                                        <field name="final_total"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_daily_cash_book" model="ir.actions.act_window">
+        <field name="name">Daily Case Book</field>
+        <field name="res_model">daily.cash.book</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="daily_casbook" name="Daily Cashbook" sequence="13"/>
+
+    <menuitem id="daily_casbook_menu" name="Daily Cashbook" sequence="0" parent="daily_casbook" action="action_daily_cash_book"/>
+</odoo>

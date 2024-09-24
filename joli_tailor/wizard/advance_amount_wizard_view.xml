@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_advance_amount_tailor_wiz" model="ir.ui.view">
+            <field name="name">advance.amount.tailor.wiz</field>
+            <field name="model">advance.amount.tailor.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Update Advance Amount">
+                    <group>
+                        <group>
+                            <field name="advance_amount" />
+                            <field name="delivery_amount" />
+                        </group>
+                        <group>
+                            <field name="journal_id" options="{'no_create': 1, 'no_edit': 1, 'no_create_edit': 1, 'no_open': 1}" attrs="{'required':['|',('advance_amount','!=',0.0),('delivery_amount','!=',0.0)]}" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button type="object" name="update_advance_amount" string="Update" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

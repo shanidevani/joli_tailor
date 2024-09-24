@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tailor_blazer_map_form_view" model="ir.ui.view">
+            <field name="name">tailor.blazer.map.form</field>
+            <field name="model">tailor.blazer.map</field>
+            <field name="arch" type="xml">
+                <form string="Tailor Map" create="false" delete="false">
+                    <header>
+                        <button name="button_ready" string="Ready" type="object" class="btn-primary" states='draft' />
+                        <button name="button_done" string="Done" type="object" class="btn-primary" states='ready' />
+                        <button name="button_set_to_draft" string="Set to Draft" type="object" class="btn-primary" states='ready' />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,done" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="name" />
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" required="1" />
+                                <field name="map_require" widget="checkbox" />
+                            </group>
+                            <group>
+                                <field name="order_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="delivery_date" attrs="{'readonly':[('state','not in',('draft'))]}" />
+                                <field name="tailor_map_id" options="{'no_create': 1, 'no_edit': 1, 'no_create_edit': 1, 'no_open': 1}" invisible="1"/>
+                                <field name="charge" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="tailor_charge" invisible="1" />
+                            </group>
+                        </group>
+
+                        <group string="Blazer Map Detail">
+                            <group>
+                                <field name="length" string="લંબાઈ(Length)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="chest" string="છાતી(Chest)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="pet" string="પેચ(Pech)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="shoulder" string="સોલ્ડર(Shoulder)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <label for="sleeve_length" string="બાય(Sleeve)"/>
+                                <div class="o_row">
+                                    <field name="sleeve_length" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <span class="oe_inline o_form_label mx-3"> - </span>
+                                    <field name="sleeve_length1" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <span class="oe_inline o_form_label mx-3"> - </span>
+                                    <field name="sleeve_length2" attrs="{'readonly':[('state','!=','draft')]}" />
+                                </div>
+                                <label for="petch" string="પેચ(Petch)"/>
+                                <div class="o_row">
+                                    <field name="petch" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <span class="oe_inline o_form_label mx-3"> - </span>
+                                    <field name="petch1" attrs="{'readonly':[('state','!=','draft')]}" />
+                                    <span class="oe_inline o_form_label mx-3"> - </span>
+                                    <field name="petch2" attrs="{'readonly':[('state','!=','draft')]}" />
+                                </div>
+                                <label for="half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+                                <div class="o_row">
+                                    <field name="half_sleeve" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                    <span class="oe_inline o_form_label mx-3"> - </span>
+                                    <field name="half_sleeve1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                </div>
+                                <field name="collar_blazer" string="કોલર(Collar)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="cuff" string="કફ(Cuff)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="seat" string="સીટ(Seat)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="bombay_patti" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="half_sleeve_patti" string="હાફ બાઈ પેટ્ટી" widget="radio" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio" attrs="{'readonly':[('state','!=','draft')]}" />
+                            </group>
+                            <group>
+                                <field name="collar" string="કોલર(Collar)" widget="radio" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="patti" string="પટી(Patti)" widget="radio" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="fancy_button" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="pocket" string="પોકેટ(Pocket)" widget="radio" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="weight" string="વજન(Weight)" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="note" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="design_no" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="image" widget="image" class="oe_avatar" attrs="{'readonly':[('state','!=','draft')]}" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="tailor_blazer_map_tree_view" model="ir.ui.view">
+            <field name="name">tailor.blazer.map.tree</field>
+            <field name="model">tailor.blazer.map</field>
+            <field name="arch" type="xml">
+                <tree string="Blazer Map" create="false" delete="false" decoration-success="state=='ready'" decoration-muted="state == 'done'">
+                    <field name="tailor_map_id" />
+                    <field name="map_require" />
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="order_date" />
+                    <field name="delivery_date" />
+                    <field name="state" />
+                    <field name="order_status" />
+                    <button name="button_ready" icon="fa fa-thumbs-up" type="object" states='tailor' string=" " />
+                </tree>
+            </field>
+        </record>
+
+        <record id="tailor_blazer_map_search_view" model="ir.ui.view">
+            <field name="name">tailor.blazer.map.search</field>
+            <field name="model">tailor.blazer.map</field>
+            <field name="arch" type="xml">
+                <search string="Blazer Map">
+                    <field name="tailor_map_id" />
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="order_date" />
+                    <field name="delivery_date" />
+                    <field name="state" />
+                    <field name="order_status" />
+                    <filter name="today" string="Today" domain="[('delivery_date', '=', context_today().strftime('%Y-%m-%d'))]" />
+                    <filter string="Tomorrow" name="tomorrow" domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')))]" />
+                    <filter string="2 days After" name="after" domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=2)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()+datetime.timedelta(days=2)).strftime('%Y-%m-%d')))]" />
+                    <filter string="3 days After Deliver" name="threeafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=3)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-3)).strftime('%Y-%m-%d')))]" />
+                    <filter string="4 days After Deliver" name="fourafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=4)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-4)).strftime('%Y-%m-%d')))]" />
+                    <filter string="5 days After Deliver" name="fiveafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=5)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-5)).strftime('%Y-%m-%d')))]" />
+                    <filter string="Week"
+                            name="week"
+                            domain="[('delivery_date','=', (datetime.date.today() + relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter string="This Week Deliver" name="thisweek" domain="[ ('delivery_date','&gt;=',(context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')), ('delivery_date','&lt;',(context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <separator />
+                    <group expand="0" string="Group By">
+                        <filter name="bill_no" string="Bill No" domain="[]" context="{'group_by':'tailor_map_id'}" />
+                        <filter string="Status" name="status" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Order Status" name="order_status" domain="[]" context="{'group_by':'order_status'}" />
+                        <filter string="Order Date" name="order_date" domain="[]" context="{'group_by':'order_date'}" />
+                        <filter string="Delivery Date" name="delivery_date" domain="[]" context="{'group_by':'delivery_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tailor_blazer_map" model="ir.actions.act_window">
+            <field name="name">Blazer</field>
+            <field name="res_model">tailor.blazer.map</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

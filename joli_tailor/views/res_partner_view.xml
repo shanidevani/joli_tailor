@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="res_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Customer">
+                <sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="name" />
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name"
+                                required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="phone" required="1" string="Mobile No1"/>
+                            <field name="mobile" string="Mobile No2"/>
+                        </group>
+                        <group>
+                            <field name="street" string="Address"/>
+                        </group>
+                    </group>
+                    <notebook>
+                    	<page name="shirt_map" string="Shirt map">
+							<group>
+								<group>
+									<field name="shirt_length" string="લંબાઈ(Length)"/>
+									<field name="shirt_chest" string="છાતી(Chest)"/>
+									<field name="shirt_pet" string="પેચ(Pech)"/>
+									<field name="shirt_shoulder" string="સોલ્ડર(Shoulder)"/>
+									<label for="shirt_sleeve_length" string="બાય(Sleeve)"/>
+									<div class="o_row">
+										<field name="shirt_sleeve_length"/>
+										<span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="shirt_sleeve_length1"/>
+										<span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="shirt_sleeve_length2"/>
+									</div>
+									<label for="shirt_petch" string="પેચ(Petch)"/>
+	                                <div class="o_row">
+	                                    <field name="shirt_petch" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="shirt_petch1" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="shirt_petch2" />
+	                                </div>
+									<field name="shirt_shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio"/>
+									<field name="shirt_patti" string="પટી(Patti)" widget="radio"/>
+									<field name="shirt_bombay_patti"/>
+								</group>
+								<group>
+									<label for="shirt_half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+									<div class="o_row">
+									    <field name="shirt_half_sleeve"/>
+									    <span class="oe_inline o_form_label mx-3"> - </span>
+									    <field name="shirt_half_sleeve1"/>
+									</div>
+									<field name="shirt_half_sleeve_patti" string="હાફ બાઈ પેટ્ટી"/>
+									<field name="shirt_collar" string="કોલર(Collar)" widget="radio"/>
+									<field name="shirt_cuff" string="કફ(Cuff)"/>
+									<field name="open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}"/>
+									<field name="shirt_seat" string="સીટ(Seat)"/>
+									<field name="shirt_fancy_button" />
+									<field name="shirt_pocket" string="પોકેટ(Pocket)" widget="radio"/>
+									<field name="shirt_note"/>
+									<field name="shirt_design_no" />
+								</group>
+							</group>
+						</page>
+						<page name="pent_map" string="Pent Map">
+							<group>
+								<group>
+									<field name="pent_length" string="લંબાઈ(Length)"/>
+									<field name="pent_moli" string="મોરી(Moli)"/>
+									<field name="pent_kamar" string="કમર(Waist)"/>
+									<field name="pent_seat" string="સીટ(Seat)"/>
+									<field name="pent_jolo" string="જોલો(Jolo)"/>
+									<field name="pent_thigh" string="સાથલ(Thigh)"/>
+									<label for="pent_ghutan" string="ગોથન(Gothan)"/>
+									<div class="o_row">
+										<field name="pent_ghutan"/>
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="pent_gothan"/>
+									</div>
+									<field name="pent_jang" string="જાં. તો()"/>
+									<field name="pent_chipti" string="ચીપટી(Chipti)" widget="radio"/>
+									<field name="pent_pocket" string="પોકેટ(Pocket)" widget="radio"/>
+									<field name="pent_back_pocket" string="બેક પોકેટ(Back Pocket)" widget="radio"/>
+								</group>
+								<group>
+									<field name="pent_greep" string="ગ્રીપ(Greep)"/>
+									<field name="pent_chirel_pocket" string="ચિરેલ પોકેટ(Chirel Pocket)"/>
+									<field name="pent_low_waist"/>
+									<field name="pent_belt" widget="radio"/>
+									<field name="pent_gaaz"/>
+									<field name="pent_mobile_pocket"/>
+									<field name="pent_watch_pocket"/>
+									<field name="pent_note"/>
+									<field name="pent_a"/>
+									<field name="pent_b"/>
+									<field name="pent_c"/>
+									<field name="pent_d"/>
+									<field name="pent_design_no"/>
+								</group>
+							</group>
+						</page>
+						<page name="pathani_map" string="Pathani Map">
+							<group>
+								<group>
+									<field name="pathani_length"/>
+									<field name="pathani_chest"/>
+									<field name="pathani_pet"/>
+									<field name="pathani_shoulder"/>
+									<label for="pathani_sleeve_length" string="બાય(Sleeve)"/>
+									<div class="o_row">
+										<field name="pathani_sleeve_length"/>
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="pathani_sleeve_length1"/>
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="pathani_sleeve_length2"/>
+									</div>
+									<label for="pathani_petch" string="પેચ(Petch)"/>
+	                                <div class="o_row">
+	                                    <field name="pathani_petch" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="pathani_petch1" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="pathani_petch2" />
+	                                </div>
+									<field name="pathani_shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio"/>
+									<field name="pathani_patti" string="પટી(Patti)" widget="radio"/>
+									<field name="pathani_bombay_patti" />
+								</group>
+								<group>
+									<label for="pathani_half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+									<div class="o_row">
+									    <field name="pathani_half_sleeve"/>
+									    <span class="oe_inline o_form_label mx-3"> - </span>
+									    <field name="pathani_half_sleeve1"/>
+									</div>
+									<field name="pathani_half_sleeve_patti" string="હાફ બાઈ પેટ્ટી"/>
+									<field name="pathani_collar" string="કોલર(Collar)" widget="radio"/>
+									<field name="pathani_cuff"/>
+									<field name="pathani_open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}"/>
+									<field name="pathani_seat" string="સીટ(Seat)"/>
+									<field name="pathani_pocket" string="પોકેટ(Pocket)" widget="radio"/>
+									<field name="pathani_note"/>
+									<field name="pathani_design_no"/>
+								</group>
+							</group>
+						</page>
+						<page name="lengho_map" string="Lengho Map">
+							<group>
+								<group>
+									<field name="lengho_length" string="લંબાઈ(Length)"/>
+									<field name="lengho_moli" string="મોરી(Mori)"/>
+									<field name="lengho_kamar" string="કમર(Waist)"/>
+									<field name="lengho_seat" string="સીટ(Seat)"/>
+									<field name="lengho_jolo" string="જોલો(Jolo)"/>
+									<label for="lengho_ghutan" string="ગોથન(Gothan)"/>
+									<div class="o_row">
+										<field name="lengho_ghutan"/>
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+										<field name="lengho_gothan"/>
+									</div>
+									<field name="lengho_jang" string="જાં. તો()"/>
+									<field name="lengho_thigh" string="સાથલ(Thigh)"/>
+									<field name="lengho_chipti" string="ચીપટી(Chipti)" widget="radio"/>
+									<field name="lengho_pocket" string="પોકેટ(Pocket)" widget="radio"/>
+									<field name="lengho_back_pocket" string="બેક પોકેટ(Back Pocket)" widget="radio"/>
+								</group>
+								<group>
+									<field name="lengho_greep" string="ગ્રીપ(Greep)"/>
+									<field name="lengho_chirel_pocket" string="ચિરેલ પોકેટ(Chirel Pocket)"/>
+									<field name="lengho_low_waist" string="લો વેસ્ટ(Low Waist)"/>
+									<field name="lengho_belt" string="બેલ્ટ(Belt)" widget="radio"/>
+									<field name="lengho_gaaz" string="ગાઝ(Gaaz)"/>
+									<field name="lengho_mobile_pocket" />
+									<field name="lengho_watch_pocket"/>
+									<field name="lengho_khicchi" />
+									<field name="lengho_note"/>
+									<field name="lengho_design_no"/>
+								</group>
+							</group>
+						</page>
+						<page name="kurto_map" string="Kurto Map">
+							<group>
+								<group>
+									<field name="kurto_length" string="લંબાઈ(Length)"/>
+									<field name="kurto_chest" string="છાતી(Chest)"/>
+		                            <field name="kurto_pet" string="પેચ(Pech)" />
+		                            <field name="kurto_shoulder" string="સોલ્ડર(Shoulder)"/>
+		                            <label for="kurto_sleeve_length" string="બાય(Sleeve)"/>
+		                            <div class="o_row">
+		                                <field name="kurto_sleeve_length" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="kurto_sleeve_length1" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="kurto_sleeve_length2" />
+		                            </div>
+		                            <label for="kurto_petch" string="પેચ(Petch)"/>
+	                                <div class="o_row">
+	                                    <field name="kurto_petch" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="kurto_petch1" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="kurto_petch2" />
+	                                </div>
+		                            <field name="kurto_shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio" />
+		                            <field name="kurto_patti" string="પટી(Patti)" widget="radio" />
+		                            <field name="kurto_bombay_patti" />
+								</group>
+								<group>
+									<label for="kurto_half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+									<div class="o_row">
+									    <field name="kurto_half_sleeve"/>
+									    <span class="oe_inline o_form_label mx-3"> - </span>
+									    <field name="kurto_half_sleeve1"/>
+									</div>
+									<field name="kurto_half_sleeve_patti" string="હાફ બાઈ પેટ્ટી"/>
+									<field name="kurto_collar" string="કોલર(Collar)" widget="radio" />
+		                            <field name="kurto_cuff" string="કફ(Cuff)" />
+		                            <field name="kurto_open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}" />
+		                            <field name="kurto_seat" string="સીટ(Seat)" />
+		                            <field name="kurto_fancy_button" />
+		                            <field name="kurto_pocket" string="પોકેટ(Pocket)" widget="radio" />
+		                            <field name="kurto_note" />
+		                            <field name="kurto_design_no" />
+								</group>
+							</group>
+						</page>
+						<page name="chorni_map" string="Chorni Map">
+							<group>
+								<group>
+									<field name="chorni_length" string="લંબાઈ(Length)" />
+		                            <field name="chorni_moli"  string="મોરી(Mori)" />
+		                            <field name="chorni_kamar" string="કમર(Waist)" />
+		                            <field name="chorni_seat" string="સીટ(Seat)" />
+		                            <field name="chorni_jolo" string="જોલો(Jolo)" />
+		                            <label for="chorni_ghutan" string="ગોથન(Gothan)"/>
+		                            <div class="o_row">
+		                                <field name="chorni_ghutan" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="chorni_gothan" />
+		                            </div>
+		                            <field name="chorni_jang" string="જાં. તો()" />
+		                            <field name="chorni_thigh" string="સાથલ(Thigh)" />
+		                            <field name="chorni_chipti" string="ચીપટી(Chipti)" widget="radio" />
+		                            <field name="chorni_pocket" string="પોકેટ(Pocket)" widget="radio" />
+									<field name="chorni_back_pocket" string="બેક પોકેટ(Back Pocket)" widget="radio"/>
+								</group>
+								<group>
+									<field name="chorni_greep" string="ગ્રીપ(Greep)" />
+		                            <field name="chorni_chirel_pocket" string="ચિરેલ પોકેટ(Chirel Pocket)" />
+		                            <field name="chorni_low_waist" string="લો વેસ્ટ(Low Waist)" />
+		                            <field name="chorni_belt" string="બેલ્ટ(Belt)" widget="radio" />
+		                            <field name="chorni_gaaz" string="ગાઝ(Gaaz)" />
+		                            <field name="chorni_mobile_pocket" />
+		                            <field name="chorni_watch_pocket" />
+		                            <field name="chorni_khicchi" />
+		                            <field name="chorni_note" />
+		                            <field name="chorni_design_no" />
+								</group>
+							</group>
+						</page>
+						<page name="coti_map" string="Coti Map">
+							<group>
+								<group>
+									<field name="coti_length" string="લંબાઈ(Length)"/>
+									<field name="coti_chest" string="છાતી(Chest)"/>
+		                            <field name="coti_pet" string="પેચ(Pech)" />
+		                            <field name="coti_shoulder" string="સોલ્ડર(Shoulder)"/>
+		                            <label for="coti_sleeve_length" string="બાય(Sleeve)"/>
+		                            <div class="o_row">
+		                                <field name="coti_sleeve_length" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="coti_sleeve_length1" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="coti_sleeve_length2" />
+		                            </div>
+		                            <label for="coti_petch" string="પેચ(Petch)"/>
+	                                <div class="o_row">
+	                                    <field name="coti_petch" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="coti_petch1" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="coti_petch2" />
+	                                </div>
+		                            <field name="coti_shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio" />
+		                            <field name="coti_patti" string="પટી(Patti)" widget="radio" />
+		                            <field name="coti_bombay_patti" />
+								</group>
+								<group>
+									<label for="coti_half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+									<div class="o_row">
+									    <field name="coti_half_sleeve"/>
+									    <span class="oe_inline o_form_label mx-3"> - </span>
+									    <field name="coti_half_sleeve1"/>
+									</div>
+									<field name="coti_half_sleeve_patti" string="હાફ બાઈ પેટ્ટી"/>
+									<field name="coti_collar" string="કોલર(Collar)" widget="radio" />
+		                            <field name="coti_cuff" string="કફ(Cuff)" />
+		                            <field name="coti_open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}" />
+		                            <field name="coti_seat" string="સીટ(Seat)" />
+		                            <field name="coti_fancy_button" />
+		                            <field name="coti_pocket" string="પોકેટ(Pocket)" widget="radio" />
+		                            <field name="coti_note" />
+		                            <field name="coti_design_no" />
+								</group>
+							</group>
+						</page>
+						<page name="blazer_map" string="Blazer Map">
+							<group>
+								<group>
+									<field name="blazer_length" string="લંબાઈ(Length)"/>
+									<field name="blazer_chest" string="છાતી(Chest)"/>
+		                            <field name="blazer_pet" string="પેચ(Pech)" />
+		                            <field name="blazer_shoulder" string="સોલ્ડર(Shoulder)"/>
+		                            <label for="blazer_sleeve_length" string="બાય(Sleeve)"/>
+		                            <div class="o_row">
+		                                <field name="blazer_sleeve_length" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="blazer_sleeve_length1" />
+		                                <span class="oe_inline o_form_label mx-3"> - </span>
+		                                <field name="blazer_sleeve_length2" />
+		                            </div>
+		                            <label for="blazer_petch" string="પેચ(Petch)"/>
+	                                <div class="o_row">
+	                                    <field name="blazer_petch" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="blazer_petch1" />
+	                                    <span class="oe_inline o_form_label mx-3"> - </span>
+	                                    <field name="blazer_petch2" />
+	                                </div>
+		                            <field name="blazer_shoulder_type" string="સોલ્ડર(Shoulder)" widget="radio" />
+		                            <field name="blazer_patti" string="પટી(Patti)" widget="radio" />
+		                            <field name="blazer_bombay_patti" />
+								</group>
+								<group>
+									<label for="blazer_half_sleeve" string="હાફ બાઈ(Half Sleeve)"/>
+									<div class="o_row">
+									    <field name="blazer_half_sleeve"/>
+									    <span class="oe_inline o_form_label mx-3"> - </span>
+									    <field name="blazer_half_sleeve1"/>
+									</div>
+									<field name="blazer_half_sleeve_patti" string="હાફ બાઈ પેટ્ટી"/>
+									<field name="blazer_collar" string="કોલર(Collar)" widget="radio" />
+		                            <field name="blazer_cuff" string="કફ(Cuff)" />
+		                            <field name="blazer_open_shirt" string="ઓપન(Open)" widget="radio" options="{'horizontal': true}" />
+		                            <field name="blazer_seat" string="સીટ(Seat)" />
+		                            <field name="blazer_fancy_button" />
+		                            <field name="blazer_pocket" string="પોકેટ(Pocket)" widget="radio" />
+		                            <field name="blazer_note" />
+		                            <field name="blazer_design_no" />
+								</group>
+							</group>
+						</page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

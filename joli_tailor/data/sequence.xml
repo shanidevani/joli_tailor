@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sequences for sale.order -->
+        <record id="seq_tailor_bill_map" model="ir.sequence">
+            <field name="name">Tailor bill map</field>
+            <field name="code">tailor.map</field>
+            <field name="prefix">TL/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_shirt_map" model="ir.sequence">
+            <field name="name">Tailor Shirt map</field>
+            <field name="code">tailor.shirt.map</field>
+            <field name="prefix">TL-SHIRT-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_kurto_map" model="ir.sequence">
+            <field name="name">Tailor Kurto map</field>
+            <field name="code">tailor.kurto.map</field>
+            <field name="prefix">TL-KURTO-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_lengho_map" model="ir.sequence">
+            <field name="name">Tailor Lengho map</field>
+            <field name="code">tailor.lengho.map</field>
+            <field name="prefix">TL-LENGHO-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_chorni_map" model="ir.sequence">
+            <field name="name">Tailor Chorni map</field>
+            <field name="code">tailor.chorni.map</field>
+            <field name="prefix">TL-CHORNI-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_pathani_map" model="ir.sequence">
+            <field name="name">Tailor Pathani map</field>
+            <field name="code">tailor.pathani.map</field>
+            <field name="prefix">TL-PATHANI-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_pent_map" model="ir.sequence">
+            <field name="name">Tailor Pent map</field>
+            <field name="code">tailor.pent.map</field>
+            <field name="prefix">TL-PENT-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_blazer_map" model="ir.sequence">
+            <field name="name">Tailor Blazer map</field>
+            <field name="code">tailor.blazer.map</field>
+            <field name="prefix">TL-BLAZER-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_tailor_coti_map" model="ir.sequence">
+            <field name="name">Tailor Coti map</field>
+            <field name="code">tailor.coti.map</field>
+            <field name="prefix">TL-COTI-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,2117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_tailor_receipt">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <style>
+                        .bg-img{
+                            background-image: url('joli_tailor/static/shirt.png');
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 200px 220px;
+                        }
+                        .bg-img-pent{
+                            background-image: url('joli_tailor/static/pent.png');
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background-size: 160px 180px;
+                        }
+                    </style>
+                    <div class="page" style="font-family: 'Noto Serif Gujarati';">
+                        <t t-set="count" t-value="0" />
+                        <div style="font-size: 1rem;" t-if='o.is_shirt' t-foreach="o.shirt_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.chest">
+                                        <div class="col-3">
+                                            <p>છાતી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.chest"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pet">
+                                        <div class="col-3">
+                                            <p>પેટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.pet"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shoulder">
+                                        <div class="col-3">
+                                            <p>સોલ્ડર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.shoulder"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>બાય :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.sleeve_length2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>પેચ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.petch"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.petch1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.petch2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.collar_shirt">
+                                        <div class="col-3">
+                                            <p>કોલર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.collar_shirt"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.cuff">
+                                        <div class="col-3">
+                                            <p>કફ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.cuff"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.half_sleeve1 and line.half_sleeve">
+                                        <div class="col-3">
+                                            <p>હાફ બાઈ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>શર્ટ ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ: </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shirt_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ શર્ટ :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.shirt_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pair_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ જોડી :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.pair_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pocket">
+                                        <div class="col-6">
+                                            <p>પોકેટ :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.pocket"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.shoulder_type">
+                                                <div class="col-4">
+                                                    <p>સોલ્ડર :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.shoulder_type"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>બોમ્બે પેટ્ટી :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.bombay_patti == True">હા</t>
+                                                    <t t-if="line.bombay_patti == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.fancy_button">
+                                                <div class="col-5">
+                                                    <p>ફેન્સી બટન :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.fancy_button"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.patti">
+                                                <div class="col-3">
+                                                    <p>પટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.patti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.collar">
+                                                <div class="col-3">
+                                                    <p>કોલર :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.collar"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.open_shirt">
+                                                <div class="col-4">
+                                                    <p>ઓપન :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.open_shirt"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 5">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_kurto' t-foreach="o.kurto_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.chest">
+                                        <div class="col-3">
+                                            <p>છાતી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.chest"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pet">
+                                        <div class="col-3">
+                                            <p>પેટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.pet"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shoulder">
+                                        <div class="col-3">
+                                            <p>સોલ્ડર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.shoulder"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>બાય :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.sleeve_length2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>પેચ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.petch"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.petch1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.petch2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.collar_kurto">
+                                        <div class="col-3">
+                                            <p>કોલર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.collar_kurto"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.cuff">
+                                        <div class="col-3">
+                                            <p>કફ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.cuff"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.half_sleeve1 and line.half_sleeve">
+                                        <div class="col-3">
+                                            <p>હાફ બાઈ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>કુર્તો ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.kurto_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ કુર્તા :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.kurto_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.shoulder_type">
+                                                <div class="col-4">
+                                                    <p>સોલ્ડર :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.shoulder_type"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>બોમ્બે પેટ્ટી :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.bombay_patti == True">હા</t>
+                                                    <t t-if="line.bombay_patti == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.fancy_button">
+                                                <div class="col-5">
+                                                    <p>ફેન્સી બટન :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.fancy_button"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.patti">
+                                                <div class="col-3">
+                                                    <p>પટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.patti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.collar">
+                                                <div class="col-3">
+                                                    <p>કોલર :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.collar"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.open_shirt">
+                                                <div class="col-3">
+                                                    <p>ઓપન :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.open_shirt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-4">
+                                                    <p>પોકેટ :-</p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_pathani' t-foreach="o.pathani_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.chest">
+                                        <div class="col-3">
+                                            <p>છાતી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.chest"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pet">
+                                        <div class="col-3">
+                                            <p>પેટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.pet"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shoulder">
+                                        <div class="col-3">
+                                            <p>સોલ્ડર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.shoulder"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>બાય :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.sleeve_length2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>પેચ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.petch"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.petch1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.petch2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.collar_pathani">
+                                        <div class="col-3">
+                                            <p>કોલર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.collar_pathani"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.cuff">
+                                        <div class="col-3">
+                                            <p>કફ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.cuff"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.half_sleeve1 and line.half_sleeve">
+                                        <div class="col-3">
+                                            <p>હાફ બાઈ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>પઠાણી ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pathani_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ પઠાણી :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.pathani_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.shoulder_type">
+                                                <div class="col-4">
+                                                    <p>સોલ્ડર :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.shoulder_type"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>બોમ્બે પેટ્ટી :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.bombay_patti == True">હા</t>
+                                                    <t t-if="line.bombay_patti == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.fancy_button">
+                                                <div class="col-5">
+                                                    <p>ફેન્સી બટન :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.fancy_button"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.patti">
+                                                <div class="col-3">
+                                                    <p>પટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.patti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.collar">
+                                                <div class="col-3">
+                                                    <p>કોલર :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.collar"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.open_shirt">
+                                                <div class="col-3">
+                                                    <p>ઓપન :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.open_shirt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-4">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_blazer' t-foreach="o.blazer_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.chest">
+                                        <div class="col-3">
+                                            <p>છાતી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.chest"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pet">
+                                        <div class="col-3">
+                                            <p>પેટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.pet"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shoulder">
+                                        <div class="col-3">
+                                            <p>સોલ્ડર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.shoulder"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>બાય :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.sleeve_length2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>પેચ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.petch"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.petch1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.petch2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.collar_blazer">
+                                        <div class="col-3">
+                                            <p>કોલર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.collar_blazer"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.cuff">
+                                        <div class="col-3">
+                                            <p>કફ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.cuff"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.half_sleeve1 and line.half_sleeve">
+                                        <div class="col-3">
+                                            <p>હાફ બાઈ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>પઠાણી ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.blazer_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ બ્લૅઝર :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.blazer_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.shoulder_type">
+                                                <div class="col-4">
+                                                    <p>સોલ્ડર :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.shoulder_type"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>બોમ્બે પેટ્ટી :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.bombay_patti == True">હા</t>
+                                                    <t t-if="line.bombay_patti == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.fancy_button">
+                                                <div class="col-5">
+                                                    <p>ફેન્સી બટન :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.fancy_button"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.patti">
+                                                <div class="col-3">
+                                                    <p>પટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.patti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.collar">
+                                                <div class="col-3">
+                                                    <p>કોલર :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.collar"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.open_shirt">
+                                                <div class="col-3">
+                                                    <p>ઓપન :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.open_shirt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-4">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_coti' t-foreach="o.coti_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.chest">
+                                        <div class="col-3">
+                                            <p>છાતી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.chest"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.pet">
+                                        <div class="col-3">
+                                            <p>પેટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.pet"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.shoulder">
+                                        <div class="col-3">
+                                            <p>સોલ્ડર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.shoulder"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>બાય :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.sleeve_length1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.sleeve_length2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.sleeve_length and line.sleeve_length1 and line.sleeve_length2">
+                                        <div class="col-3">
+                                            <p>પેચ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.petch"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.petch1"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <span t-esc="line.petch2"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.collar_coti">
+                                        <div class="col-3">
+                                            <p>કોલર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.collar_coti"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.cuff">
+                                        <div class="col-3">
+                                            <p>કફ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.cuff"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.half_sleeve1 and line.half_sleeve">
+                                        <div class="col-3">
+                                            <p>હાફ બાઈ :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve"/>
+                                            </div>
+                                            <div class="col-4">
+                                                <span t-esc="line.half_sleeve1"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>પઠાણી ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.coti_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ કોટી :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.coti_qty"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.shoulder_type">
+                                                <div class="col-4">
+                                                    <p>સોલ્ડર :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.shoulder_type"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>બોમ્બે પેટ્ટી :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.bombay_patti == True">હા</t>
+                                                    <t t-if="line.bombay_patti == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.fancy_button">
+                                                <div class="col-5">
+                                                    <p>ફેન્સી બટન :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.fancy_button"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.patti">
+                                                <div class="col-3">
+                                                    <p>પટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.patti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.collar">
+                                                <div class="col-3">
+                                                    <p>કોલર :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.collar"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.open_shirt">
+                                                <div class="col-3">
+                                                    <p>ઓપન :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.open_shirt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-4">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem; border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;" t-if='o.is_pent' t-foreach="o.pent_map_ids" t-as="line">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.moli">
+                                        <div class="col-3">
+                                            <p>મોળી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.moli"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.kamar">
+                                        <div class="col-3">
+                                            <p>કમર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.kamar"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jolo">
+                                        <div class="col-3">
+                                            <p>જોલો</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.jolo"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.thigh">
+                                        <div class="col-3">
+                                            <p>સાથલ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.thigh"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.ghutan and line.gothan">
+                                        <div class="col-3">
+                                            <p>ગોથન :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-6">
+                                                <span t-esc="line.ghutan"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-esc="line.gothan"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jang">
+                                        <div class="col-4">
+                                            <p>જાં. તો :- </p>
+                                        </div>
+                                        <div class="col-8">
+                                            <span t-esc="line.jang"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img-pent" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>પેન્ટ ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.delivery_date">
+                                        <div class="col-6">
+                                            <p>ડિલિવરી તારીખ:</p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.delivery_date"/>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row" t-if="line.pent_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ પેન્ટ :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.pent_qty"/>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="row" t-if="line.pair_qty">
+                                        <div class="col-6">
+                                            <p>ટોટલ જોડી :- </p>
+                                        </div>
+                                        <div clas="col-6">
+                                            <span t-esc="line.pair_qty"/>
+                                        </div>
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.pent_qty">
+                                                <div class="col-6">
+                                                    <p>ટોટલ પેન્ટ :- </p>
+                                                </div>
+                                                <div clas="col-6">
+                                                    <span t-esc="line.pent_qty"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.chipti">
+                                                <div class="col-3">
+                                                    <p>ચીપટી :</p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.chipti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-3">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.back_pocket">
+                                                <div class="col-5">
+                                                    <p>બેક પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.back_pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <p>ચિરેલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <t t-if="line.chirel_pocket == True">હા</t>
+                                                    <t t-if="line.chirel_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="belt">
+                                                <div class="col-3">
+                                                    <p>બેલ્ટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.belt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>વોચ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.watch_pocket == True">હા</t>
+                                                    <t t-if="line.watch_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.pair_qty">
+                                                <div class="col-6">
+                                                    <p>ટોટલ જોડી :- </p>
+                                                </div>
+                                                <div clas="col-6">
+                                                    <span t-esc="line.pair_qty"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગ્રીપ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.greep == True">હા</t>
+                                                    <t t-if="line.greep == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <p>લો વેસ્ટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <t t-if="line.low_waist == True">હા</t>
+                                                    <t t-if="line.low_waist == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગાઝ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.gaaz == True">હા</t>
+                                                    <t t-if="line.gaaz == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <p>મોબાઇલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <t t-if="line.mobile_pocket == True">હા</t>
+                                                    <t t-if="line.mobile_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ખીચી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.khicchi == True">હા</t>
+                                                    <t t-if="line.khicchi == False">ના</t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="row" t-if="line.a">
+                                        <div class="col-2">
+                                            <p>A :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.a"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row" t-if="line.b">
+                                        <div class="col-2">
+                                            <p>B :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.b"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row" t-if="line.c">
+                                        <div class="col-2">
+                                            <p>C :- </p>
+                                        </div>
+                                        <div class="col-110">
+                                            <span t-esc="line.c"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="row" t-if="line.d">
+                                        <div class="col-2">
+                                            <p>D :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.d"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-1">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-11">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_lengho' t-foreach="o.lengho_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.moli">
+                                        <div class="col-3">
+                                            <p>મોળી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.moli"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.kamar">
+                                        <div class="col-3">
+                                            <p>કમર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.kamar"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jolo">
+                                        <div class="col-3">
+                                            <p>જોલો</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.jolo"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.thigh">
+                                        <div class="col-3">
+                                            <p>સાથલ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.thigh"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.ghutan and line.gothan">
+                                        <div class="col-3">
+                                            <p>ગોથન :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-6">
+                                                <span t-esc="line.ghutan"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-esc="line.gothan"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jang">
+                                        <div class="col-4">
+                                            <p>જાં. તો :- </p>
+                                        </div>
+                                        <div class="col-8">
+                                            <span t-esc="line.jang"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img-pent" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>લેંઘો ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.lengho_qty">
+                                                <div class="col-6">
+                                                    <p>ટોટલ લેંઘા :- </p>
+                                                </div>
+                                                <div clas="col-6">
+                                                    <span t-esc="line.lengho_qty"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.chipti">
+                                                <div class="col-3">
+                                                    <p>ચીપટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.chipti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-3">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.back_pocket">
+                                                <div class="col-5">
+                                                    <p>બેક પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.back_pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <p>ચિરેલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <t t-if="line.chirel_pocket == True">હા</t>
+                                                    <t t-if="line.chirel_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.belt">
+                                                <div class="col-3">
+                                                    <p>બેલ્ટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.belt"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>વોચ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.watch_pocket == True">હા</t>
+                                                    <t t-if="line.watch_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.delivery_date">
+                                                <div class="col-6">
+                                                    <p>ડિલિવરી તારીખ:</p>
+                                                </div>
+                                                <div clas="col-6">
+                                                    <span t-esc="line.delivery_date"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગ્રીપ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.greep == True">હા</t>
+                                                    <t t-if="line.greep == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <p>લો વેસ્ટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <t t-if="line.low_waist == True">હા</t>
+                                                    <t t-if="line.low_waist == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગાઝ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.gaaz == True">હા</t>
+                                                    <t t-if="line.gaaz == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <p>મોબાઇલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <t t-if="line.mobile_pocket == True">હા</t>
+                                                    <t t-if="line.mobile_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ખીચી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.khicchi == True">હા</t>
+                                                    <t t-if="line.khicchi == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                        <div style="font-size: 1rem;" t-if='o.is_chorni' t-foreach="o.chorni_map_ids" t-as="line">
+                            <div class="row" style="border-style: solid;border-color: black;border-width: 2px; padding: 5px; margin: 5px;">
+                                <div class="col-4">
+                                    <div class="row" t-if="o.partner_id.name">
+                                        <div class="col-3">
+                                            <p>નામ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="o.partner_id.phone">
+                                        <div class="col-3">
+                                            <p>નંબર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="o.partner_id.phone"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.length">
+                                        <div class="col-3">
+                                            <p>લંબાઈ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.length"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.moli">
+                                        <div class="col-3">
+                                            <p>મોળી :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.moli"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.kamar">
+                                        <div class="col-3">
+                                            <p>કમર :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.kamar"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.seat">
+                                        <div class="col-3">
+                                            <p>સીટ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.seat"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jolo">
+                                        <div class="col-3">
+                                            <p>જોલો</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.jolo"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.thigh">
+                                        <div class="col-3">
+                                            <p>સાથલ :- </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <span t-esc="line.thigh"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.ghutan and line.gothan">
+                                        <div class="col-3">
+                                            <p>ગોથન :- </p>
+                                        </div>
+                                        <div class="col-9 row">
+                                            <div class="col-6">
+                                                <span t-esc="line.ghutan"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-esc="line.gothan"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.jang">
+                                        <div class="col-4">
+                                            <p>જાં. તો :- </p>
+                                        </div>
+                                        <div class="col-8">
+                                            <span t-esc="line.jang"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 bg-img-pent" style="padding-top: 30px;">
+                                </div>
+                                <div class="col-5">
+                                    <div class="row" t-if="o.name">
+                                        <div class="col-6">
+                                            <p>ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="o.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.name">
+                                        <div class="col-6">
+                                            <p>ચોરણી ઓર્ડર નંબર :- </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-esc="line.name"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.chorni_qty">
+                                                <div class="col-6">
+                                                    <p>ટોટલ ચોરણી :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.chorni_qty"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.chipti">
+                                                <div class="col-3">
+                                                    <p>ચીપટી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.chipti"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.pocket">
+                                                <div class="col-3">
+                                                    <p>પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.back_pocket">
+                                                <div class="col-5">
+                                                    <p>બેક પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <span t-esc="line.back_pocket"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <p>ચિરેલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <t t-if="line.chirel_pocket == True">હા</t>
+                                                    <t t-if="line.chirel_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.belt">
+                                                <div class="col-3">
+                                                    <p>બેલ્ટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <span t-esc="line.belt"/>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row">
+                                                <div class="col-3">
+                                                    <p>કટ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.cutt == True">હા</t>
+                                                    <t t-if="line.cutt == False">ના</t>
+                                                </div>
+                                            </div> -->
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <p>વોચ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-7">
+                                                    <t t-if="line.watch_pocket == True">હા</t>
+                                                    <t t-if="line.watch_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="row" t-if="line.delivery_date">
+                                                <div class="col-6">
+                                                    <p>ડિલિવરી તારીખ:</p>
+                                                </div>
+                                                <div clas="col-6">
+                                                    <span t-esc="line.delivery_date"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગ્રીપ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.greep == True">હા</t>
+                                                    <t t-if="line.greep == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <p>લો વેસ્ટ :- </p>
+                                                </div>
+                                                <div class="col-8">
+                                                    <t t-if="line.low_waist == True">હા</t>
+                                                    <t t-if="line.low_waist == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ગાઝ :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.gaaz == True">હા</t>
+                                                    <t t-if="line.gaaz == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <p>મોબાઇલ પોકેટ :- </p>
+                                                </div>
+                                                <div class="col-5">
+                                                    <t t-if="line.mobile_pocket == True">હા</t>
+                                                    <t t-if="line.mobile_pocket == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <p>ખીચી :- </p>
+                                                </div>
+                                                <div class="col-9">
+                                                    <t t-if="line.khicchi == True">હા</t>
+                                                    <t t-if="line.khicchi == False">ના</t>
+                                                </div>
+                                            </div>
+                                            <div class="row" t-if="line.design_no">
+                                                <div class="col-6">
+                                                    <p>ડિઝાઇન નંબર :- </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="line.design_no"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" t-if="line.note">
+                                        <div class="col-2">
+                                            <p>નોટ :- </p>
+                                        </div>
+                                        <div class="col-10">
+                                            <span t-esc="line.note"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <t t-set="count" t-value="count + 1" />
+                            <t t-if="count >= 4">
+                                <t t-set="count" t-value="0" />
+                                <p style="page-break-after:always"></p>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_tailor_map_receipt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="joli_tailor.report_tailor_receipt" />
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_tailor_receipt" model="report.paperformat">
+            <field name="name">Report</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">15</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_tailor_receipt" model="ir.actions.report">
+            <field name="name">Tailor Receipt</field>
+            <field name="model">tailor.map</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">joli_tailor.report_tailor_map_receipt</field>
+            <field name="report_file">joli_tailor.report_tailor_map_receipt</field>
+            <field name="binding_model_id" ref="model_tailor_map" />
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Tailor Receipt - %s' % (object.name or 'New').replace('/','')</field>
+        </record>
+
+        <record id="joli_tailor.action_report_tailor_receipt" model="ir.actions.report">
+            <field name="paperformat_id" ref="joli_tailor.paperformat_tailor_receipt" />
+        </record>
+    </data>
+</odoo>

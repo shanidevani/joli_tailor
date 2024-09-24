@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+daily_casebook.access_daily_cash_book,access_daily_cash_book,daily_casebook.model_daily_cash_book,base.group_user,1,1,1,1

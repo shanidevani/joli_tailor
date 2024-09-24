@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_company_form_view_inherit_payment_for">
+            <field name="name">res.company.inherit.form.view.payment.for</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='general_info']" position="after">
+                    <page string="Tailor Details" name="tailor_details">
+                            <group>
+                                <group>
+                                    <field name="shirt_charge"/>
+                                    <field name="pent_charge"/>
+                                    <field name="kurto_charge"/>
+                                    <field name="lengho_charge"/>
+                                    <field name="blazer_charge"/>
+                                    <field name="greep_charge"/>
+                                    <field name="fancy_button_charge"/>
+                                </group>
+                                <group>
+                                    <field name="pair_shirt_charge"/>
+                                    <field name="pair_pent_charge"/>
+                                    <field name="pathani_charge"/>
+                                    <field name="chorni_charge"/>
+                                    <field name="coti_charge"/>
+                                    <field name="chirel_pocket_charge"/>
+                                </group>
+                            </group>
+                        </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

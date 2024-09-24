@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_tailor_root" name="Tailor" sequence="1" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_map" name="Tailor Map" parent="menu_tailor_root" sequence="1" action="action_tailor_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_shirt_map" name="Shirt" parent="menu_tailor_root" sequence="1" action="action_tailor_shirt_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_pent_map" name="Pent" parent="menu_tailor_root" sequence="2" action="action_tailor_pent_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_kurto_map" name="Kurto" parent="menu_tailor_root" sequence="3" action="action_tailor_kurto_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_pathani_map" name="Pathani" parent="menu_tailor_root" sequence="4" action="action_tailor_pathani_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_lengho_map" name="Lengho" parent="menu_tailor_root" sequence="5" action="action_tailor_lengho_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_chorni_map" name="Chorni" parent="menu_tailor_root" sequence="6" action="action_tailor_chorni_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_blazer_map" name="Blazer" parent="menu_tailor_root" sequence="6" action="action_tailor_blazer_map" groups="joli_tailor.group_tailor_user" />
+        <menuitem id="menu_tailor_coti_map" name="Coti" parent="menu_tailor_root" sequence="6" action="action_tailor_coti_map" groups="joli_tailor.group_tailor_user" />
+    </data>
+</odoo>

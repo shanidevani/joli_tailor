@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tailor_daily_case_book_form" model="ir.ui.view">
+            <field name="name">daily.cash.book.inherit.form.tailor</field>
+            <field name="model">daily.cash.book</field>
+            <field name="inherit_id" ref="daily_casebook.daily_cash_book_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//table//thead" position="inside">
+                    <tr style="line-height:10px; border-top:1px solid black;">
+                        <td colspan="4" style="text-align:center;background:#E5E7E6;font-size:15px;">
+                            <b>Tailor</b>
+                        </td>
+                    </tr>
+                    <!-- <tr style="line-height:2px;vertical-align:bottom;">
+                    <td>Advance Amount</td>
+                    <td style="text-align:right;color:green;">
+                        <field name="tailor_advance_amount"/>
+                        <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_advance" string="View" type="object"/>
+                    </td>
+                    <td style="text-align:center;">-</td>
+                    <td style="text-align:center;">-</td>
+                </tr> -->
+                    <tr style="line-height:2px;vertical-align:bottom;">
+                        <td>Advance Amount</td>
+                        <td style="text-align:right;color:green;">
+                            <field name="tailor_advance_amount" />
+                            <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_advance" string="View" type="object" />
+                        </td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:center;">-</td>
+                    </tr>
+                    <tr style="line-height:2px;vertical-align:bottom;">
+                        <td style="">Deliver Amount </td>
+                        <td style="text-align:right;color:green;">
+                            <field name="tailor_deliver_amount" />
+                            <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_deliver" string="View" type="object" />
+                        </td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:center;">-</td>
+                    </tr>
+                    <tr style="line-height:2px;vertical-align:bottom;">
+                        <td style="">Refund Amount</td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:right;color:red;">
+                            <field name="tailor_refund_amount" />
+                            <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_refund_amt" string="View" type="object" />
+                        </td>
+                        <td style="text-align:center;">-</td>
+                    </tr>
+                    <tr style="line-height:2px;vertical-align:bottom;">
+                        <td style="">Refund Advance </td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:right;color:red;">
+                            <field name="tailor_refund_advance" />
+                            <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_refund_adv" string="View" type="object" />
+                        </td>
+                        <td style="text-align:center;">-</td>
+                    </tr>
+                    <tr style="line-height:2px;vertical-align:bottom;">
+                        <td style="text-align:right;">
+                            <b>Total</b>
+                        </td>
+                        <td style="text-align:right;color:green;">
+                            <field name="tailor_total" />
+                            <button class="oe_link" style="margin: -12px 0px;" name="action_tailor_total" string="View" type="object" />
+                        </td>
+                        <td style="text-align:center;">-</td>
+                        <td style="text-align:right;font-weight:bold;">
+                            <field name="tailor_total" />
+                        </td>
+                    </tr>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

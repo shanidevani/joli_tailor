@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="tailor_map_form_view" model="ir.ui.view">
+            <field name="name">tailor.map.form</field>
+            <field name="model">tailor.map</field>
+            <field name="arch" type="xml">
+                <form string="Tailor Map">
+                    <header>
+                        <button name="button_confirm" string="Confirm" type="object" class="btn-primary" states='draft' confirm="Are you sure you want to confirm this order?" />
+                        <button name="delivery_order" string="Delivery" type="object" class="btn-primary" states='confirm' groups="joli_tailor.group_tailor_manager" />
+                        <button name="button_set_to_draft" string="Set to Draft" type="object" class="btn-primary" states='cancel' groups="joli_tailor.group_tailor_manager" />
+                        <!-- <button name="preview_tailor" string="Preview" type="object" class="btn-primary" states='confirm' /> -->
+                        <button name="button_refund_amount" string="Refund Amount" type="object" class="btn-primary" attrs="{'invisible':['|', ('state', '!=', 'cancel'), ('advance_amount', '=', 0)]}" groups="joli_tailor.group_tailor_manager" />
+                        <button name="button_cancel" string="Cancel" type="object" class="btn-primary" states='confirm' />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="view_account_invoice" icon="fa-list" string="Invoice" type="object" attrs="{'invisible':[('invoice_id','=',False)]}" />
+                            <button class="oe_stat_button" name="view_account_payment" icon="fa-list" string=" " type="object" attrs="{'invisible':[('payment_count','=',0)]}">
+                                <field name="payment_count" widget="statinfo" string="Payment" />
+                            </button>
+                            <button class="oe_stat_button" name="action_preview_tailor" type="object" icon="fa-eye">
+                                <span class="o_stat_text">Preview</span>
+                            </button>
+                            <button class="oe_stat_button" name="action_preview_map" type="object" icon="fa-eye">
+                                <span class="o_stat_text">Map Preview</span>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="name" />
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" attrs="{'readonly':[('state','!=','draft')]}" context="{'form_view_ref': 'joli_tailor.res_partner_form_view'}"/>
+                                <field name="mobile1" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="mobile2" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="address" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="invoice_id" invisible="1" />
+                                <field name="payment_ids" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="order_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="delivery_date" attrs="{'readonly':[('state','!=','draft')]}" />
+                                <field name="is_advance" />
+                                <field name="remarks" />
+                            </group>
+
+                            <group>
+                                <label for="is_pair" string="Pair"/>
+                                <div class="o_row">
+                                    <field name="is_pair" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_pair" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="pair_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pair','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_pair" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="pair_charge" readonly="1" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pair','=',False)]}"/>
+                                </div>
+                                <label for="is_shirt" string="Shirt"/>
+                                <div class="o_row">
+                                    <field name="is_shirt" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_shirt" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="shirt_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_shirt','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_shirt" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="shirt_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_shirt','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_pent" string="Pent"/>
+                                <div class="o_row">
+                                    <field name="is_pent" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_pent" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="pent_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pent','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_pent" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="pent_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pent','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_fancy_button" string="Fancy Button"/>
+                                <div class="o_row">
+                                    <field name="is_fancy_button" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_fancy_button" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="fancy_button_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_fancy_button','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_fancy_button" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="fancy_button_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_fancy_button','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_kurto" string="Kurto"/>
+                                <div class="o_row">
+                                    <field name="is_kurto" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_kurto" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="kurto_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_kurto','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_kurto" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="kurto_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_kurto','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_greep" string="Greep"/>
+                                <div class="o_row">
+                                    <field name="is_greep" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_greep" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="greep_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_greep','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_greep" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="greep_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_greep','=',False)]}" readonly="1"/>
+                                </div>
+                            </group>
+                            <group>
+                                <label for="is_pathani" string="Pathani"/>
+                                <div class="o_row">
+                                    <field name="is_pathani" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_pathani" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="pathani_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pathani','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_pathani" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="pathani_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_pathani','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_lengho" string="Lengho"/>
+                                <div class="o_row">
+                                    <field name="is_lengho" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_lengho" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="lengho_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_lengho','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_lengho" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="lengho_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_lengho','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_chorni" string="Chorni"/>
+                                <div class="o_row">
+                                    <field name="is_chorni" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_chorni" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="chorni_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_chorni','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_chorni" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="chorni_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_chorni','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_blazer" string="Blazer"/>
+                                <div class="o_row">
+                                    <field name="is_blazer" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_blazer" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="blazer_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_blazer','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_blazer" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="blazer_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_blazer','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_coti" string="Coti"/>
+                                <div class="o_row">
+                                    <field name="is_coti" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_coti" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="coti_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_coti','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_coti" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="coti_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_coti','=',False)]}" readonly="1"/>
+                                </div>
+                                <label for="is_chirel_pocket" string="Chirel Pocket"/>
+                                <div class="o_row">
+                                    <field name="is_chirel_pocket" attrs="{'readonly':[('state','!=','draft')]}" class="oe_inline" />
+                                    <button name="add_chirel_pocket" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-plus" type="object" />
+                                    <field name="chirel_pocket_qty" attrs="{'readonly':['|', ('state','!=','draft'), ('is_chirel_pocket','=',False)]}" class="oe_inline"/>
+                                    <button name="minus_chirel_pocket" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-minus" type="object" />
+                                    <field name="chirel_pocket_charge" attrs="{'readonly':['|', ('state','!=','draft'), ('is_chirel_pocket','=',False)]}" readonly="1"/>
+                                </div>
+                            </group>
+                        </group>
+                        <notebook>
+                        <page name="shirt" string="Shirt" attrs="{'invisible':[('is_shirt','=',False)]}">
+                            <field name="shirt_map_ids" attrs="{'invisible':[('is_shirt','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_shirt_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Shirt" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="pent" string="Pent" attrs="{'invisible':[('is_pent','=',False)]}">
+                            <field name="pent_map_ids" attrs="{'invisible':[('is_pent','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_pent_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id, 'default_pent_qty': pent_qty, 'default_pair_qty': pair_qty}">
+                                <tree string="Pent" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='draft'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="kurto" string="Kurto" attrs="{'invisible':[('is_kurto','=',False)]}">
+                            <field name="kurto_map_ids" attrs="{'invisible':[('is_kurto','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_kurto_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Kurto" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="pathani" string="Pathani" attrs="{'invisible':[('is_pathani','=',False)]}">
+                            <field name="pathani_map_ids" attrs="{'invisible':[('is_pathani','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_pathani_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Pathani" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="lengho" string="Lengho" attrs="{'invisible':[('is_lengho','=',False)]}">
+                            <field name="lengho_map_ids" attrs="{'invisible':[('is_lengho','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_lengho_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Lengho" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='draft'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="chorni" string="Chorni" attrs="{'invisible':[('is_chorni','=',False)]}">
+                            <field name="chorni_map_ids" attrs="{'invisible':[('is_chorni','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_chorni_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Chorni" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='draft'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="blazer" string="Blazer" attrs="{'invisible':[('is_blazer','=',False)]}">
+                            <field name="blazer_map_ids" attrs="{'invisible':[('is_blazer','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_blazer_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Blazer" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='draft'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page name="coti" string="Coti" attrs="{'invisible':[('is_coti','=',False)]}">
+                            <field name="coti_map_ids" attrs="{'invisible':[('is_coti','=',False)],'readonly':[('state','=','done')]}" context="{'form_view_ref': 'joli_tailor.tailor_coti_map_form_view', 'default_delivery_date': delivery_date, 'default_partner_id': partner_id}">
+                                <tree string="Coti" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='draft'" decoration-muted="state == 'done'">
+                                    <field name="delivery_date"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="design_no" />
+                                    <field name="charge" />
+                                    <field name="state" />
+                                    <button name="button_ready" string=" " icon="fa-solid fa-thumbs-up" type="object" states='draft' />
+                                </tree>
+                            </field>
+                        </page>
+
+                        </notebook>
+                        <group class="oe_subtotal_footer oe_right" name="charge_total">
+                            <field name="total_charge" />
+                            <field name="discount" />
+                            <field name="final_amount" />
+                            <label for="advance_amount" />
+                            <div class="o_row">
+                                <field name="advance_amount" readonly="1" class="oe_inline" />
+                                <button name="update_advance_amount" style="margin-left:30px;" string="Update" type="object" class="oe_link" attrs="{'invisible':[('state','in',('draft', 'cancel'))]}" />
+                            </div>
+                            <field name="paid_amount" />
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="due_amount" />
+                            </div>
+                            <field name="due_amount" nolabel="1" class="oe_subtotal_footer_separator" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="tailor_map_tree_view" model="ir.ui.view">
+            <field name="name">tailor.map.tree</field>
+            <field name="model">tailor.map</field>
+            <field name="arch" type="xml">
+                <tree string="Tailor Map" decoration-success="state=='ready'" decoration-bf="state=='confirm'" decoration-warning="state=='tailor'" decoration-muted="state == 'done'">
+                    <field name="name" />
+                    <field name="partner_id" />
+                    <field name="mobile1" />
+                    <field name="order_date" attrs="{'readonly':[('state','=','done')]}" />
+                    <field name="delivery_date" attrs="{'readonly':[('state','=','done')]}" />
+                    <field name="total_charge" sum="Total" />
+                    <field name="discount" sum="Total" />
+                    <field name="advance_amount" sum="Total" />
+                    <field name="paid_amount" sum="Total" />
+                    <field name="due_amount" sum="Total" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="tailor_map_search_view" model="ir.ui.view">
+            <field name="name">tailor.map.search</field>
+            <field name="model">tailor.map</field>
+            <field name="arch" type="xml">
+                <search string="Map">
+                    <field name="name" filter_domain="['|', '|', '|', ('name', 'ilike', self), ('mobile1', 'ilike', self), ('mobile2', 'ilike', self), ('partner_id', 'ilike', self)]"/>
+                    <field name="partner_id" />
+                    <field name="order_date" />
+                    <field name="delivery_date" />
+                    <field name="state" />
+                    <field name="create_uid" string="Salesperson" />
+                    <separator />
+                    <filter name="today" string="Today" domain="[('delivery_date', '=', context_today().strftime('%Y-%m-%d'))]" />
+                    <filter string="Tomorrow" name="tomorrow" domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d')))]" />
+                    <filter string="2 days After" name="after" domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=2)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()+datetime.timedelta(days=2)).strftime('%Y-%m-%d')))]" />
+                    <filter string="3 days After Deliver" name="threeafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=3)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-3)).strftime('%Y-%m-%d')))]" />
+                    <filter string="4 days After Deliver" name="fourafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=4)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-4)).strftime('%Y-%m-%d')))]" />
+                    <filter string="5 days After Deliver" name="fiveafter"
+                        domain="[('delivery_date','&gt;=', ((context_today()+datetime.timedelta(days=5)).strftime('%Y-%m-%d'))), ('delivery_date','&lt;=', ((context_today()-datetime.timedelta(days=-5)).strftime('%Y-%m-%d')))]" />
+                    <filter string="Week"
+                            name="week"
+                            domain="[('delivery_date','=', (datetime.date.today() + relativedelta(weekday=6)).strftime('%%Y-%%m-%%d'))]"/>
+                    <filter string="This Week Deliver" name="thisweek" domain="[ ('delivery_date','&gt;=',(context_today()+relativedelta(weeks=-1,days=1,weekday=0)).strftime('%Y-%m-%d')), ('delivery_date','&lt;',(context_today()+relativedelta(weekday=6)).strftime('%Y-%m-%d'))]"/>
+                    <separator />
+                    <group expand="0" string="Group By">
+                        <filter name="partner_id" string="Customer" domain="[]" context="{'group_by':'partner_id'}" />
+                        <filter string="Status" name="status" domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Order Date" name="order_date" domain="[]" context="{'group_by':'order_date'}" />
+                        <filter string="Delivery Date" name="delivery_date" domain="[]" context="{'group_by':'delivery_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tailor_map" model="ir.actions.act_window">
+            <field name="name">Tailor</field>
+            <field name="res_model">tailor.map</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

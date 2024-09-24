@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_tailor_customer_receipt_header">
+            <div class="header" style="font-family: 'Noto Serif Gujarati', Bold;font-size: 1rem; font-family: 'Noto Serif Gujarati';">
+                <div class="row" style="padding: 0px; margin: 0px;">
+                    <div class="col-3" style="color: #FF4500; padding-top: 5px;">
+                        <p>
+                            અશોક એસ. કથીરિયા
+                            <br />
+                            મોં. 98798 20011
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <p style="text-align: center; color: #FF4500; font-size: 4rem;margin-bottom: 0px;">
+                                <b>
+                                    જોલી
+                                    <span style="font-size: 2rem;">ટેલર્સ &amp; સિલેક્શન</span>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-3" style="color: #FF4500; padding-top: 5px;">
+                        <ul style="list-style-type: circle;">
+                            <li>પેન્ટ</li>
+                            <li>શર્ટ</li>
+                            <li>શૂટ</li>
+                            <li>સફારી</li>
+                            <li>કોટિના સ્પેશ્યાલીસ્ટ</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <p style="color: #FF4500; font-size: 1.3rem; text-align: center; margin-bottom: 0px; margin-top: 0px;">
+    					સુટીંગ સર્ટિન્ગ તેમજ કટપીસ મળશે.
+    				</p>
+                </div>
+                <div class="row">
+                    <p style="color: #FF4500; font-size: 1.2rem; text-align: center; border-top: 1px solid #FF4500; border-bottom: 1px solid #FF4500;">
+    					૧૧૫/૧૧૬, પહેલો માળ, સત્યમ શિવમ સુન્દરમ એપા, ક્ષમા સોસાયટીની સામે, ધર્મનગર રોડ, સુરત.
+    				</p>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_tailor_customer_receipt_footer">
+            <div class="footer" style="font-family: 'Noto Serif Gujarati';">
+                <div class="row" t-if="o.total_charge">
+                    <div class="col-8" />
+                    <div class="col-4 row" style="padding: 5px; ">
+                        <div class="col-6" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">સબટોટલ :</span>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.total_charge" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="o.discount">
+                    <div class="col-8" />
+                    <div class="col-4 row" style="padding: 5px; ">
+                        <div class="col-6" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">ડિસ્કાઉન્ટ :</span>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.discount" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="o.final_amount">
+                    <div class="col-8" />
+                    <div class="col-4 row" style="padding: 5px; ">
+                        <div class="col-6" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">ફાઇનલ અમાઉન્ટ :</span>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.final_amount" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4" />
+                    <!-- <div class="col-4" >
+						<div class="col-1"/>
+						<div class="col-10" style="border: 1px solid #FF4500; padding: 5px; border-radius: 10px; text-align: center;">
+							<span style="color: #FF4500; font-size: 1.2rem;">ડીલી. તા. : <t t-esc="o.delivery_date"/></span>
+						</div>
+						<div class="col-1"/>
+					</div> -->
+                    <div class="col-8 row" style="padding: 5px; ">
+                        <div class="col-1" />
+                        <div class="col-5" style="border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #FF4500; font-size: 1.2rem;">
+                                ડીલી. તા. :
+                                <t t-esc="o.delivery_date" />
+                            </span>
+                        </div>
+                        <div class="col-3" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">એડવાન્સ :</span>
+                        </div>
+                        <div class="col-3" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.advance_amount" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="o.paid_amount">
+                    <div class="col-8" />
+                    <!-- 
+                    <div class="col-" /> -->
+                    <div class="col-4 row" style="padding: 5px; ">
+                        <div class="col-6" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">પૈડ અમોઉન્ટ :</span>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.paid_amount" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" t-if="o.due_amount">
+                    <div class="col-4" />
+                    <div class="col-8 row" style="padding: 5px; ">
+                        <div class="col-6" />
+                        <!-- <div class="col-5" style="border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #FF4500; font-size: 1.2rem;">
+                                પયમેન્ટ મેથડ :
+                                <t t-esc="o.delivery_date" />
+                            </span>
+                        </div> -->
+                        <div class="col-3" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">બાકી :</span>
+                        </div>
+                        <div class="col-3" style="border: 1px solid #FF4500;border-radius: 10px; text-align: right; margin: 3px; padding-right: 10px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: right;">
+                                <span t-field="o.company_id.currency_id.symbol"/>
+                                <t t-esc="o.due_amount" />
+                            </span>
+                        </div>
+                    </div>
+                    <!-- <div class="col-4 row" style="padding: 5px; ">
+                        <div class="col-6" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #ffffff; font-size: 1.2rem; text-align: center;">બાકી :</span>
+                        </div>
+                        <div class="col-6" style="border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                            <span style="color: #FF4500; font-size: 1.2rem; text-align: center;">
+                                <t t-esc="o.due_amount" />
+                            </span>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-2" style="background-color: #FF4500;border: 1px solid #FF4500;border-radius: 10px; text-align: center; margin: 3px;">
+                        <span style="color: #FFFFFF; font-size: 1.2rem; text-align: center;">સૂચના :</span>
+                    </div>
+                    <div class="col-10" />
+                </div>
+                <div class="row">
+                    <div class="col-1" style="text-align: right;margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">૧)</span>
+                    </div>
+                    <div class="col-11" style="text-align: left; margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">સિલાઇની રકમ રોકડ લેવામાં આવશે.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1" style="text-align: right;margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">૨)</span>
+                    </div>
+                    <div class="col-11" style="text-align: left; margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">કપડાની ડીલીવરીની તારીખથી ૩૦ દિવસમા કપડા લઈ જવા ત્યાર પછી અમે જવાબદાર નથી.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1" style="text-align: right;margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">૩)</span>
+                    </div>
+                    <div class="col-11" style="text-align: left; margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">સન્જોગોસર કપડાની ડિલિવરી સમયસર ન થઇ શકે તો ગ્રાહકે તકરાર કરવી નહીં.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1" style="text-align: right;margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">૪)</span>
+                    </div>
+                    <div class="col-11" style="text-align: left; margin: 3px;">
+                        <span style="color: #FF4500; font-size: 1.2rem;">ઈમ્પોર્ટેડ કાપડમા ફિટિંગની ગેરેન્ટી આપવામાં આવશે નહીં.</span>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="report_tailor_customer_page">
+            <t t-call="joli_tailor.report_tailor_customer_receipt_header" />
+            <t t-call="web.external_layout">
+                <div class="page" style="font-family: 'Noto Serif Gujarati';">
+                    <div class="row" style="padding: 3px;">
+                        <div class="col-8 row">
+                            <div class="col-1">
+                                <p style="color: #FF4500; font-size: 1rem;">નામ :</p>
+                            </div>
+                            <div class="col-11">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.partner_id.name" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-4 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">નંબર :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.name" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 3px;">
+                        <div class="col-6 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">મોં.નં. :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.mobile1" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">તારીખ :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.order_date" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 15px;">
+                        <table style="color: #FF4500; font-size: 1rem;border : 0;">
+                            <thead style="color: #FF4500; font-size: 1rem;">
+                                <tr>
+                                    <th width="4%" style="padding: 3px; font-size: 1rem;">No.</th>
+                                    <th style="padding: 3px; font-size: 1rem;">Item</th>
+                                    <th width="12%" style="padding: 3px; font-size: 1rem; text-align: center;">Quantity</th>
+                                    <th width="8%" style="padding: 3px; font-size: 1rem; text-align: center;">Price</th>
+                                    <th width="8%" style="padding: 3px; font-size: 1rem; text-align: center;">Total</th>
+                                    <!-- <th width="10%" style="padding: 3px; font-size: 1.5rem;">&#2801;</th> -->
+                                </tr>
+                            </thead>
+                            <t t-set="count" t-value="1" />
+                            <tbody>
+                                <tr t-if="o.is_pair" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Pair</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.pair_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <t t-set="charge" t-value="o.company_id.pair_shirt_charge + o.company_id.pair_pent_charge" />
+                                        <span t-esc="charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.pair_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.shirt_map_ids" t-as="line" t-if='o.is_shirt' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Shirt</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.shirt_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.shirt_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.shirt_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.pent_map_ids" t-as="line" t-if='o.is_pent' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Pent</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.pent_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.pent_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.pent_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.kurto_map_ids" t-as="line" t-if='o.is_kurto' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Kurto</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.kurto_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.kurto_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.kurto_charge" />
+                                    </td>
+                                </tr>
+                                
+                                <tr t-foreach="o.pathani_map_ids" t-as="line" t-if='o.is_pathani' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Pathani</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.pathani_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.pathani_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.pathani_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.lengho_map_ids" t-as="line" t-if='o.is_lengho' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Lengho</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.lengho_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.lengho_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.lengho_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.chorni_map_ids" t-as="line" t-if='o.is_chorni' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Chorni</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.chorni_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.chorni_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.chorni_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.blazer_map_ids" t-as="line" t-if="o.is_blazer" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Blazer</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.blazer_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.blazer_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.blazer_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.coti_map_ids" t-as="line" t-if="o.is_coti" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Coti</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.coti_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.coti_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.coti_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-if="o.is_fancy_button" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Fancy Button</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.fancy_button_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.fancy_button_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.fancy_button_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-if="o.is_greep" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Greep</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.greep_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.greep_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.greep_charge" />
+                                    </td>
+                                </tr>
+                                <tr t-if="o.is_chirel_pocket" style="font-size: 1rem;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px; padding-left: 5px;">
+                                        <span>Chirel Pocket</span>
+                                    </td>
+                                    <td style="padding: 2px; text-align: center;">
+                                        <span t-esc="o.chirel_pocket_qty"/>
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.company_id.chirel_pocket_charge" />
+                                    </td>
+                                    <td style="padding: 2px; text-align: right;">
+                                        <span t-field="o.company_id.currency_id.symbol"/>
+                                        <span t-esc="o.chirel_pocket_charge" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <t t-call="joli_tailor.report_tailor_customer_receipt_footer" />
+            </t>
+        </template>
+
+        <!-- <template id="report_tailor_customer_receipt_page">
+            <t t-call="joli_tailor.report_tailor_customer_receipt_header" />
+            <t t-call="web.external_layout">
+                <div class="page" style="font-family: 'Noto Serif Gujarati';">
+                    <div class="row" style="padding: 3px;">
+                        <div class="col-8 row">
+                            <div class="col-1">
+                                <p style="color: #FF4500; font-size: 1rem;">નામ :</p>
+                            </div>
+                            <div class="col-11">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.partner_id.name" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-4 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">નંબર :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.name" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 3px;">
+                        <div class="col-6 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">મોં.નં. :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.mobile1" />
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 row">
+                            <div class="col-2">
+                                <p style="color: #FF4500; font-size: 1rem;">તારીખ :</p>
+                            </div>
+                            <div class="col-10">
+                                <p style="color: #FF4500; font-size: 1rem; border-bottom: 1px solid #FF4500;">
+                                    <span t-esc="o.order_date" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 15px;">
+                        <table style="color: #FF4500; font-size: 1rem;border : 0;">
+                            <thead style="color: #FF4500; font-size: 1rem;">
+                                <tr>
+                                    <th width="4%" style="padding: 3px; font-size: 1.5rem;">નંબર</th>
+                                    <th style="padding: 3px; font-size: 1.5rem;">વિગત</th>
+                                    <th width="10%" style="padding: 3px; font-size: 1.5rem;">&#2801;</th>
+                                </tr>
+                            </thead>
+                            <t t-set="count" t-value="1" />
+                            <tbody>
+                                <tr t-foreach="o.shirt_map_ids" t-as="line" t-if='o.is_shirt' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.kurto_map_ids" t-as="line" t-if='o.is_kurto' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.pathani_map_ids" t-as="line" t-if='o.is_pathani' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.pent_map_ids" t-as="line" t-if='o.is_pent' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.lengho_map_ids" t-as="line" t-if='o.is_lengho' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                                <tr t-foreach="o.chorni_map_ids" t-as="line" t-if='o.is_chorni' style="font-size: 1rem; color: #FF4500;">
+                                    <td style="padding: 2px; text-align: center;">
+                                        <t t-esc="count" />
+                                        <t t-set="count" t-value="count + 1" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.name" />
+                                    </td>
+                                    <td style="padding: 2px;">
+                                        <span t-esc="line.charge" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <t t-call="joli_tailor.report_tailor_customer_receipt_footer" />
+            </t>
+        </template> -->
+
+        <template id="report_tailor_customer_receipt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="joli_tailor.report_tailor_customer_page" />
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_tailor_cutomer_receipt" model="report.paperformat">
+            <field name="name">Customer Report</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">95</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">25</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_tailor_customer_receipt" model="ir.actions.report">
+            <field name="name">Tailor customer Report</field>
+            <field name="model">tailor.map</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">joli_tailor.report_tailor_customer_receipt</field>
+            <field name="report_file">joli_tailor.report_tailor_customer_receipt</field>
+            <field name="binding_model_id" ref="model_tailor_map" />
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'Tailor Receipt - %s' % (object.name or 'New').replace('/','')</field>
+        </record>
+
+        <record id="joli_tailor.action_report_tailor_customer_receipt" model="ir.actions.report">
+            <field name="paperformat_id" ref="joli_tailor.paperformat_tailor_cutomer_receipt" />
+        </record>
+
+    </data>
+</odoo>

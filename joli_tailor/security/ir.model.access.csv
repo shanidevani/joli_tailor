@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tailor_map,access_tailor_map,model_tailor_map,base.group_user,1,1,1,1
+access_tailor_shirt_map,access_tailor_shirt_map,model_tailor_shirt_map,base.group_user,1,1,1,1
+access_tailor_pent_map,access_tailor_pent_map,model_tailor_pent_map,base.group_user,1,1,1,1
+access_tailor_kurto_map,access_tailor_kurto_map,model_tailor_kurto_map,base.group_user,1,1,1,1
+access_tailor_pathani_map,access_tailor_pathani_map,model_tailor_pathani_map,base.group_user,1,1,1,1
+access_tailor_lengho_map,access_tailor_lengho_map,model_tailor_lengho_map,base.group_user,1,1,1,1
+access_tailor_chorni_map,access_tailor_chorni_map,model_tailor_chorni_map,base.group_user,1,1,1,1
+access_tailor_blazer_map,access_tailor_blazer_map,model_tailor_blazer_map,base.group_user,1,1,1,1
+access_tailor_coti_map,access_tailor_coti_map,model_tailor_coti_map,base.group_user,1,1,1,1
+access_delivery_tailor_order_wiz,access_delivery_tailor_order_wiz,model_delivery_tailor_order_wiz,base.group_user,1,1,1,1
+access_delivery_tailor_order_wiz_line,access_delivery_tailor_order_wiz_line,model_delivery_tailor_order_wiz_line,base.group_user,1,1,1,1
+access_confirm_wizard,access_confirm_wizard,model_confirm_wizard,base.group_user,1,1,1,1
+access_advance_amount_tailor_wiz,access_advance_amount_tailor_wiz,model_advance_amount_tailor_wiz,base.group_user,1,1,1,1
+access_refund_advance_amount_order_wiz,access_refund_advance_amount_order_wiz,model_refund_advance_amount_order_wiz,base.group_user,1,1,1,1
